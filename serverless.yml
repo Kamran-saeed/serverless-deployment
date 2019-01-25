@@ -1,12 +1,19 @@
 service: my-express-application
 
+# plugins:
+#   #- serverless-dynamodb-local
+#   - serverless-offline
+
 custom:
   tableName: 'users-table-${self:provider.stage}'
+  # dynamodb:
+  #   start:
+  #     migrate: true
 
 provider:
   name: aws
-  runtime: nodejs8.10
-  stage: dev
+  runtime: nodejs6.10
+  stage: ${opt:stage}
   region: eu-west-1
   iamRoleStatements:
     - Effect: Allow
@@ -21,6 +28,7 @@ provider:
         - { "Fn::GetAtt": ["UsersDynamoDBTable", "Arn" ] }
   environment:
     USERS_TABLE: ${self:custom.tableName}
+    stage: 'stage-${self:provider.stage}'
 
 functions:
   app:

@@ -5,7 +5,7 @@ const app = express()
 const AWS = require('aws-sdk');
 
 
-const USERS_TABLE = 'UsersDynamoDBTable'//process.env.USERS_TABLE;
+const USERS_TABLE = process.env.USERS_TABLE;
 
 // AWS.config.update({
 //     region: "localhost",
