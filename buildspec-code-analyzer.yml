@@ -1,0 +1,13 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+       - npm install -g eslint
+  build:
+    commands:
+       - eslint index.js
+
+artifacts:
+ files: 
+  - '**/*'
